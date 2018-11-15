@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import moment from 'moment';
 import 'moment/locale/ru';
 
@@ -16,23 +18,23 @@ export default function SingleFlight(props) {
       <td>{flight.term}</td>
       <td>
 
-        {(direction === 'departure') &&
-          <div>
-            {(flight.t_st_mar && flight.t_at_mar !== flight.t_st_mar) &&
-              <div>
-                {moment(flight.t_st_mar).format('LT')}
-                <br />
-                <span className="badge badge-info">Вылет в {  moment(flight.t_at_mar).format('LT')}</span>
-              </div>
-            }
+      {(direction === 'departure') &&
+        <div>
+          {(flight.t_otpr && flight.t_st !== flight.t_otpr) &&
+            <div>
+              {moment(flight.t_st).format('LT')}
+              <br />
+              <span className="badge badge-info">Вылет в {  moment(flight.t_otpr).format('LT')}</span>
+            </div>
+          }
 
-            {(!flight.t_st_mar || flight.t_at_mar === flight.t_st_mar) &&
-              <div>
-                {  moment(flight.t_at_mar).format('LT')}
-              </div>
-            }
-          </div>
-        }
+          {(!flight.t_otpr || flight.t_st === flight.t_otpr) &&
+            <div>
+              {  moment(flight.t_st).format('LT')}
+            </div>
+          }
+        </div>
+      }
 
         {(direction === 'arrival') &&
           <div>
@@ -55,4 +57,9 @@ export default function SingleFlight(props) {
       </td>
     </tr>
   );
+}
+
+SingleFlight.propTypes = {
+  flight: PropTypes.object.isRequired,
+  direction: PropTypes.string.isRequired,
 }

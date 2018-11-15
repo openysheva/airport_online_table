@@ -1,7 +1,10 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import moment from 'moment';
 import 'moment/locale/ru';
+
 
 moment.locale('ru');
 
@@ -38,17 +41,17 @@ export default function CombinedFlight(props) {
 
       {(direction === 'departure') &&
         <div>
-          {(mainFlight.t_st_mar && mainFlight.t_at_mar !== mainFlight.t_st_mar) &&
+          {(mainFlight.t_otpr && mainFlight.t_st !== mainFlight.t_otpr) &&
             <div>
-              {moment(mainFlight.t_st_mar).format('LT')}
+              {moment(mainFlight.t_st).format('LT')}
               <br />
-              <span className="badge badge-info">Вылет в {  moment(mainFlight.t_at_mar).format('LT')}</span>
+              <span className="badge badge-info">Вылет в {  moment(mainFlight.t_otpr).format('LT')}</span>
             </div>
           }
 
-          {(!mainFlight.t_st_mar || mainFlight.t_at_mar === mainFlight.t_st_mar) &&
+          {(!mainFlight.t_otpr || mainFlight.t_st === mainFlight.t_otpr) &&
             <div>
-              {  moment(mainFlight.t_at_mar).format('LT')}
+              {  moment(mainFlight.t_st).format('LT')}
             </div>
           }
         </div>
@@ -75,4 +78,9 @@ export default function CombinedFlight(props) {
       </td>
     </tr>
   );
+}
+
+CombinedFlight.propTypes = {
+  flight: PropTypes.array.isRequired,
+  direction: PropTypes.string.isRequired,
 }

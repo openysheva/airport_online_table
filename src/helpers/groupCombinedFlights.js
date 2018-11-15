@@ -26,11 +26,11 @@ export default function groupCombinedFlights(schedule, direction) {
     }
 
     if (direction === 'departure') {
-      if (comparedA.t_st_mar && comparedB.t_st_mar) {
-        return +moment(comparedA.t_st_mar).format('x') - +moment(comparedB.t_st_mar).format('x');
+      if (comparedA.t_otpr && comparedB.t_otpr) {
+        return +moment(comparedA.t_otpr).format('x') - +moment(comparedB.t_otpr).format('x');
       }
 
-      return +moment(comparedA.t_at_mar).format('x') - +moment(comparedB.t_at_mar).format('x');
+      return +moment(comparedA.t_st).format('x') - +moment(comparedB.t_st).format('x');
     }
 
     return -1;

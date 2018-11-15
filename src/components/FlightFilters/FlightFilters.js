@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './FlightFilters.css';
 
 export default function FlightFilters(props) {
@@ -22,7 +24,7 @@ export default function FlightFilters(props) {
             >
               Вылет
             </button>
-            
+
             <button
               onClick = { changeFlightDirection }
               value="arrival"
@@ -62,4 +64,11 @@ export default function FlightFilters(props) {
 
       </div>
     );
+}
+
+FlightFilters.propTypes = {
+  changeFlightDirection: PropTypes.func.isRequired,
+  changeFlightNumber: PropTypes.func.isRequired,
+  showDelayedFlights: PropTypes.func.isRequired,
+  filters: PropTypes.object.isRequired,
 }

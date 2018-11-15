@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import CombinedFlight from '../CombinedFlight/CombinedFlight';
 import SingleFlight from '../SingleFlight/SingleFlight';
 import './FlightSchedule.css';
@@ -56,4 +58,10 @@ export default function FlightSchedule(props) {
       )*/}
     </div>
   );
+}
+
+FlightSchedule.propTypes = {
+  schedule: PropTypes.array.isRequired,
+  direction: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 }
